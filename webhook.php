@@ -19,9 +19,9 @@ function processRequest($text)
 	$text = trim($text);
 	$text = strtolower($text);
 	$response = "";
-	if($text=="Uffici")
+	if($text=="uffici")
 	{
-		$response = "Link uffici e orari";
+		$response = "http://www.comune.calolziocorte.lc.it/index.php/amministrazione/uffici-e-orari";
 	}
 	elseif ($text=="domanda 2")
 	{
