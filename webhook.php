@@ -21,7 +21,7 @@ function processRequest($text)
 	$response = "";
 	if($text=="uffici")
 	{
-		$response = "http://www.comune.calolziocorte.lc.it/index.php/amministrazione/uffici-e-orari";
+		$response = ."<a href="http://www.comune.calolziocorte.lc.it/index.php/amministrazione/uffici-e-orari">".uffici e orari."</a>";
 	}
 	elseif ($text=="domanda 2")
 	{
