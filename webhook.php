@@ -9,7 +9,11 @@ foreach ($messages as $message)
 	$recipientId = $message->senderId;
 	if($message->text)
 	{
-		$bot->sendTextMessage($recipientId, $message->text);
+		if($message=="prova"){
+			$bot->sendTextMessage($recipientId, $message->"Questa e una prova");
+		}else{
+			$bot->sendTextMessage($recipientId, $message->text);
+		}
 	}
 	elseif($message->attachments)
 	{
