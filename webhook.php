@@ -1,29 +1,40 @@
 <?php
 require_once (dirname(__FILE__) . '/config.php');
 require_once (dirname(__FILE__) . '/FacebookBot.php');
+$bot = new FacebookBot(FACEBOOK_VALIDATION_TOKEN, FACEBOOK_PAGE_ACCESS_TOKEN);
+$bot->run();
+$messages = $bot->getReceivedMessages();
 
-curl -X POST -H "Content-Type: application/json" -d '{
-  "recipient":{
-    "id":"<PSID>"
-  },
-  "messaging_type": "RESPONSE",
-  "message":{
-    "text": "Pick a color:",
-    "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      },{
-        "content_type":"text",
-        "title":"Green",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/green.png"
-      }
-    ]
-  }
-}' "https://graph.facebook.com/v6.0/me/messages?access_token="EAADbYVnw53sBAPBATKoKghNPhIFFV7eMCtCqHUZA5v9yPBtrGW9dlw5mKd4QBR0zfprL7BvZB6QIayYHWCTEUA6UzZCfqt8ncStotFBjbAJZC4WFZApUaA9qDEgYF35TmjXDX0jDiCc8LzHjF47HnJdMms3WltQs1fhQgfDN4f5q7i7SIVLJL";	
+foreach ($messages as $message)
+{
+	$recipientId = $message->senderId;
+	if($message->text)
+	{
+		$response = processRequest($message->text);
+		$bot->sendTextMessage($recipientId, $response);
+	}
+}
 
+
+
+
+function processRequest($text)
+{
+	$text = trim($text);
+	$text = strtolower($text);
+	$response = "";
+	if($text=="uffici")
+	{
+		$response = "uffici e orari";
+	}
+	elseif ($text=="domanda 2")
+	{
+		$response = "risposta alla domanda 2";
+	}
+	else
+	{
+		$response = "Non capisco la domanda";
+	}
+	return $response;
+}
 ?>
-
