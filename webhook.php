@@ -6,7 +6,7 @@ $input = jason_decode(file_get_contents('php://input'),true);
 $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
 $message = $input['entry'][0]['messaging'][0]['message']['text'];
 $message = strlower($message);
-$url="https://graph.facebook.com/v6.0/me/messages?access_token=<PAGE_ACCESS_TOKEN>"
+$url="https://graph.facebook.com/v6.0/me/messages?access_token=EAADbYVnw53sBAPBATKoKghNPhIFFV7eMCtCqHUZA5v9yPBtrGW9dlw5mKd4QBR0zfprL7BvZB6QIayYHWCTEUA6UzZCfqt8ncStotFBjbAJZC4WFZApUaA9qDEgYF35TmjXDX0jDiCc8LzHjF47HnJdMms3WltQs1fhQgfDN4f5q7i7SIVLJL";
 $ch=curl_init($url);
 
 $jsonData='{
